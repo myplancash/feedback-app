@@ -15,10 +15,24 @@ const FeedbackList = ({ feedback, handleDelete }) => {
 
   return (
     <FeedbackListDiv>
-      {feedback &&
-        feedback.map((item) => (
-          <FeedbackItem key={item.id} item={item} handleDelete={handleDelete} />
-        ))}
+      <AnimatePresence>
+        {feedback &&
+          feedback.map((item) => (
+            <motion.div
+              key={item.id}
+              initial={{ x: 0, opacity: 0 }}
+              animate={{ x: [null, 100, 0], opacity: 1 }}
+              transition={{ ease: 'easeOut', duration: 0.5 }}
+              exit={{ x: 0, opacity: 0 }}
+            >
+              <FeedbackItem
+                key={item.id}
+                item={item}
+                handleDelete={handleDelete}
+              />
+            </motion.div>
+          ))}
+      </AnimatePresence>
     </FeedbackListDiv>
   )
 }
