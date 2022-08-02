@@ -13,6 +13,7 @@ const FeedbackItem = ({ item, handleDelete }) => {
       </button>
       <div className='text-display'>{text}</div>
     </Card>
+
   )
 }
 

@@ -5,6 +5,14 @@ import FeedbackData from './data/FeedbackData'
 import FeedbackList from './components/feedback-list/feedback-list.component.jsx'
 import FeedbackStats from './components/feedback-stats/feedback-stats.component'
 import FeedbackForm from './components/feedback-form/feedback-form.component'
+import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
+
+import About from './pages/about/about.component'
+import AboutIconLink from './components/about-icon-link/about-icon-link.component.jsx'
+
+import { FeedbackProvider } from "./context/FeedbackContext";
+
+
 
 const App = () => {
   const [feedback, setFeedback] = useState(FeedbackData || [])
@@ -21,14 +29,37 @@ const App = () => {
   }
 
   return (
-    <>
-      <Header />
-      <div className='container'>
-        <FeedbackForm handleAdd={addFeedback} />
-        <FeedbackStats feedback={feedback} />
-        <FeedbackList feedback={feedback} handleDelete={deleteFeedback} />
-      </div>
-    </>
+    <FeedbackProvider>
+      <Router>
+        <Header />
+
+        <div className='container'>
+          <Routes>
+              <Route exact path='/' element={
+                <>
+                  <FeedbackForm handleAdd={addFeedback} />
+                  <FeedbackStats />
+                  <FeedbackList handleDelete={deleteFeedback} />
+                </>
+                }>
+              </Route>
+              <Route path="/about" element={<About />} />
+          </Routes>
+        </div>
+        <AboutIconLink />
+        {/* explaning NavLink usage
+          <Card>
+            <NavLink to='/' activeClassName='active'>
+              Home Page
+            </NavLink>
+
+            <NavLink to='/about' activeClassName='active'>
+                About Page
+            </NavLink>
+        </Card> */}
+
+      </Router>
+    </FeedbackProvider>
   )
 }
 

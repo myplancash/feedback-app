@@ -208,23 +208,6 @@ input:focus {
   color: rebeccapurple;
 }
 
-/* FIX: Remove position: absolute to keep about icon at the bottom of the
- * document */
-.about-link {
-  display: flex;
-  justify-content: flex-end;
-}
-
-/* FIX: Remove position: absolute to keep about icon at the bottom of the
- * document */
-.about-link a {
-  color: #fff;
-  cursor: pointer;
-}
-
-.about-link a:hover {
-  color: #ff6a95;
-}
 
 .about h1 {
   margin-bottom: 20px;
@@ -233,6 +216,14 @@ input:focus {
 .about p {
   margin: 10px 0;
 }
+/*
+.active {
+  background-color: #ff6a95;
+  color:#f4f4f4;
+  padding: 1rem;
+  border: .5px solid #80afcd;
+}
+ */
 
 @media (max-width: 600px) {
   .rating li {
