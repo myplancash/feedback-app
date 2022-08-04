@@ -139,6 +139,7 @@ input {
 
 input:focus {
   outline: none;
+  border: 1px solid red;
 }
 
 .feedback-stats {
@@ -240,5 +241,10 @@ input:focus {
 
   .input-group input {
     width: 80%;
+  }
+
+  .input-group input:focus {
+    outline: none;
+    border: 1px solid red;
   }
 }
