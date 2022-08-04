@@ -37,8 +37,9 @@ export const FeedbackProvider = ({children}) => {
 
   // add Feedback item by es6's way of spreading values, and add a new id to the new one.
   const addFeedback = (newFeedback) => {
-    newFeedback.id = uuidv4();
-
+    newFeedback.id = uuidv4()
+    console.log(newFeedback)
+    setFeedback([newFeedback, ...feedback])
   }
 
   // set item to be updated
