@@ -1,9 +1,9 @@
 {
   "feedback": [
     {
-      "id": 1,
-      "rating": 10,
-      "text": "Feedback Item #1 coming from db.json backend"
+      "rating": "4",
+      "text": "Feedback item #1 coming from the db.json",
+      "id": 1
     },
     {
       "id": 2,
@@ -15,6 +15,5 @@
       "rating": 6,
       "text": "Feedback Item #3 coming from db.json backend"
     }
-
   ]
 }

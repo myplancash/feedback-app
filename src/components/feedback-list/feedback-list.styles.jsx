@@ -15,3 +15,5 @@ export const NoFeedback = styled.div`
   justify-content: center;
   border: 1px solid #333;
 `
+
+//on his own,  by himself
