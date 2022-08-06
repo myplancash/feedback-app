@@ -6,14 +6,24 @@
       "id": 1
     },
     {
-      "id": 2,
-      "rating": 3,
-      "text": "Feedback Item #2 coming from db.json backend"
-    },
-    {
       "id": 3,
       "rating": 6,
       "text": "Feedback Item #3 coming from db.json backend"
+    },
+    {
+      "text": "Create new feedack comemt this an updated",
+      "rating": 5,
+      "id": 4
+    },
+    {
+      "text": "Thiis is a new comment with fetching properties ",
+      "rating": 8,
+      "id": 5
+    },
+    {
+      "text": "asdasdasdasdasdas",
+      "rating": 2,
+      "id": 6
     }
   ]
 }

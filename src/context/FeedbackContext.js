@@ -1,6 +1,4 @@
-import { v4 as uuidv4 } from 'uuid'
 import { createContext, useState, useEffect } from "react";
-import { FaPenFancy } from 'react-icons/fa'
 
 const FeedbackContext = createContext();
 
@@ -14,28 +12,36 @@ export const FeedbackProvider = ({children}) => {
   })
 
   useEffect(() => {
-    fetchFeedback()
+    const fetchFeedback = async () => {
+      const response = await fetch(`/feedback?_sort=id&_order=desc`)
+      const data = await response.json();
+      setFeedback(data);
+      setIsLoading(false)
+    }
+    fetchFeedback();
   }, [])
 
-  const fetchFeedback = async () => {
-    const response = await fetch(`http://localhost:5000/feedback?_sort=id&_order="desc"`)
-    const data = await response.json()
-    setFeedback(data)
-    setIsLoading(false)
-  }
-
   // delete feedback item by filter comparisson
-  const deleteFeedback = (id) => {
-  console.log(feedback)
-  if (window.confirm('Are you sure you want to delete it?'))
+  const deleteFeedback = async (id) => {
+    if (window.confirm('Are you sure you want to delete it?')) {
+      fetch(`/feedback/${id}`, {method: "DELETE"})
+    }
     setFeedback(feedback.filter((item) => item.id !== id))
   }
 
   // add Feedback item by es6's way of spreading values, and add a new id to the new one.
-  const addFeedback = (newFeedback) => {
-    newFeedback.id = uuidv4()
-    console.log(newFeedback)
-    setFeedback([newFeedback, ...feedback])
+
+  const addFeedback = async (newFeedback) => {
+    const response = await fetch("/feedback", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newFeedback),
+    })
+
+    const data = await response.json();
+    setFeedback([data, ...feedback])
   }
 
   // set item to be updated
@@ -46,9 +52,19 @@ export const FeedbackProvider = ({children}) => {
     })
   }
 
-  const updateFeedback = (id, updateItem) => {
-    console.log(id, updateItem)
-    setFeedback(feedback.map((item) => item.id === id ? {...item, ...updateItem} : item) )
+  const updateFeedback = async (id, updateItem) => {
+    const response = await fetch(`/feedback/${id}`, {
+      method: "PUT",
+      //since we are setting json data so we need to set our headers
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateItem)
+    })
+    const data = await response.json();
+
+    setFeedback(feedback.map((item) => item.id === id ? {...item, ...data} : item) )
+    console.log(id, data)
   }
 
 
